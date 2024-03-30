@@ -20,7 +20,6 @@ namespace Итоговая_контрольная_работа_по_основн
             }
             string[] test = { "text", "dasdas", "23", "1", "234", "dsa", "2345" }; //ReadText("Введите набор слов через запятую: ");
             int count = 0;
-            char quote = '"';
             int countForSmallArray = 0;
             foreach(string offer in test)
             {
