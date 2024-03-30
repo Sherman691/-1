@@ -10,44 +10,50 @@ namespace Итоговая_контрольная_работа_по_основн
     {
         static void Main(string[] args)
         {
-            
 
-
-            int ReadInt(string text)
+            string[] ReadText (string text)
             {
                 Console.WriteLine(text);
-                return Convert.ToInt32(Console.ReadLine());
-
+                string readText = Console.ReadLine();
+                string[] offerArray = readText.Split (',');
+                return offerArray;
             }
-
-            Random random = new Random();
-            string GenerateRandomString(int length)
+            string[] test = { "text", "dasdas", "23", "1", "234", "dsa", "2345" }; //ReadText("Введите набор слов через запятую: ");
+            int count = 0;
+            char quote = '"';
+            int countForSmallArray = 0;
+            foreach(string offer in test)
             {
-                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-            }
-
-
-
-            int numberOfWords = ReadInt("Введите длинну предложения: ");
-            int minWordsLenght = 1; //ReadInt("Введите минимальную длинну слова в предложении: ");
-            int maxWordsLenght = 5; // ReadInt("Введите максимальную длинну слова в предложении: ");
-
-            string GenerateRandomProposal(int lenght)
-            {
-                int rand = random.Next(minWordsLenght, maxWordsLenght + 1);
-                string proposal = GenerateRandomString(rand);
-
-                for (int i = 0; i <= lenght; i++)
+                if (offer.Length <= 3)
                 {
-                    rand = random.Next(minWordsLenght, maxWordsLenght + 1);
-                    proposal = proposal + " " + GenerateRandomString(rand);
+                    count++;
                 }
-
-                return proposal;
             }
+            string[] array = new string[count];
+           
+                foreach(var offer in test)
+                {
+                    if (offer.Length < 4)
+                    {
+                        array[countForSmallArray] = offer;
+                        countForSmallArray++;
+                    }
+                }
+            string output = "[";
+            for (int i = 0; i < array.Length; i++)
+            {
+                output += "\"" + array[i] + "\"";
+                if (i < array.Length - 1)
+                {
+                    output += ", ";
+                }
+            }
+            output += "]";
 
-            Console.WriteLine(GenerateRandomProposal(numberOfWords));
+            Console.WriteLine(output);
+            
+
+            
 
 
 
